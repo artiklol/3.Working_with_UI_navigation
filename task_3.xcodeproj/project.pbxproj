@@ -9,19 +9,23 @@
 /* Begin PBXBuildFile section */
 		061530E2295085EA0095F6EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061530E1295085EA0095F6EE /* AppDelegate.swift */; };
 		061530E4295085EA0095F6EE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061530E3295085EA0095F6EE /* SceneDelegate.swift */; };
-		061530E6295085EA0095F6EE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061530E5295085EA0095F6EE /* MainViewController.swift */; };
+		061530E6295085EA0095F6EE /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061530E5295085EA0095F6EE /* MainTabBarController.swift */; };
 		061530EB295085EE0095F6EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 061530EA295085EE0095F6EE /* Assets.xcassets */; };
 		061530EE295085EE0095F6EE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 061530EC295085EE0095F6EE /* LaunchScreen.storyboard */; };
+		061530F72950A4450095F6EE /* ContactListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061530F62950A4450095F6EE /* ContactListViewController.swift */; };
+		061530F92950A4890095F6EE /* FavoriteСontactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061530F82950A4890095F6EE /* FavoriteСontactsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		061530DE295085EA0095F6EE /* task_3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = task_3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		061530E1295085EA0095F6EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		061530E3295085EA0095F6EE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		061530E5295085EA0095F6EE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		061530E5295085EA0095F6EE /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		061530EA295085EE0095F6EE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		061530ED295085EE0095F6EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		061530EF295085EE0095F6EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		061530F62950A4450095F6EE /* ContactListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListViewController.swift; sourceTree = "<group>"; };
+		061530F82950A4890095F6EE /* FavoriteСontactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoriteСontactsViewController.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,9 +58,11 @@
 		061530E0295085EA0095F6EE /* task_3 */ = {
 			isa = PBXGroup;
 			children = (
+				061530E5295085EA0095F6EE /* MainTabBarController.swift */,
+				061530F62950A4450095F6EE /* ContactListViewController.swift */,
+				061530F82950A4890095F6EE /* FavoriteСontactsViewController.swift */,
 				061530E1295085EA0095F6EE /* AppDelegate.swift */,
 				061530E3295085EA0095F6EE /* SceneDelegate.swift */,
-				061530E5295085EA0095F6EE /* MainViewController.swift */,
 				061530EA295085EE0095F6EE /* Assets.xcassets */,
 				061530EC295085EE0095F6EE /* LaunchScreen.storyboard */,
 				061530EF295085EE0095F6EE /* Info.plist */,
@@ -156,8 +162,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				061530E6295085EA0095F6EE /* MainViewController.swift in Sources */,
+				061530E6295085EA0095F6EE /* MainTabBarController.swift in Sources */,
+				061530F72950A4450095F6EE /* ContactListViewController.swift in Sources */,
 				061530E2295085EA0095F6EE /* AppDelegate.swift in Sources */,
+				061530F92950A4890095F6EE /* FavoriteСontactsViewController.swift in Sources */,
 				061530E4295085EA0095F6EE /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
