@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06003AEB295330A6003A638C /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06003AEA295330A6003A638C /* Contact.swift */; };
+		06003AED29533237003A638C /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06003AEC29533237003A638C /* StorageManager.swift */; };
+		06003AEF295374AD003A638C /* ContactListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06003AEE295374AD003A638C /* ContactListCell.swift */; };
 		061530E2295085EA0095F6EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061530E1295085EA0095F6EE /* AppDelegate.swift */; };
 		061530E4295085EA0095F6EE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061530E3295085EA0095F6EE /* SceneDelegate.swift */; };
 		061530E6295085EA0095F6EE /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061530E5295085EA0095F6EE /* MainTabBarController.swift */; };
@@ -17,6 +20,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		06003AEA295330A6003A638C /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		06003AEC29533237003A638C /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		06003AEE295374AD003A638C /* ContactListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListCell.swift; sourceTree = "<group>"; };
 		061530DE295085EA0095F6EE /* task_3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = task_3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		061530E1295085EA0095F6EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		061530E3295085EA0095F6EE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -58,8 +64,11 @@
 		061530E0295085EA0095F6EE /* task_3 */ = {
 			isa = PBXGroup;
 			children = (
+				06003AEA295330A6003A638C /* Contact.swift */,
+				06003AEC29533237003A638C /* StorageManager.swift */,
 				061530E5295085EA0095F6EE /* MainTabBarController.swift */,
 				061530F62950A4450095F6EE /* ContactListViewController.swift */,
+				06003AEE295374AD003A638C /* ContactListCell.swift */,
 				061530F82950A4890095F6EE /* FavoriteСontactsViewController.swift */,
 				061530E1295085EA0095F6EE /* AppDelegate.swift */,
 				061530E3295085EA0095F6EE /* SceneDelegate.swift */,
@@ -162,8 +171,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06003AEF295374AD003A638C /* ContactListCell.swift in Sources */,
+				06003AEB295330A6003A638C /* Contact.swift in Sources */,
 				061530E6295085EA0095F6EE /* MainTabBarController.swift in Sources */,
 				061530F72950A4450095F6EE /* ContactListViewController.swift in Sources */,
+				06003AED29533237003A638C /* StorageManager.swift in Sources */,
 				061530E2295085EA0095F6EE /* AppDelegate.swift in Sources */,
 				061530F92950A4890095F6EE /* FavoriteСontactsViewController.swift in Sources */,
 				061530E4295085EA0095F6EE /* SceneDelegate.swift in Sources */,
