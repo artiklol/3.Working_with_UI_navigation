@@ -11,6 +11,8 @@ struct Contact: Codable {
     let name: String
     let surname: String
     let phoneNumber: String
+    let image: Data?
+    var favorite: Bool
 
     var encoded: Data? {
         let encoder = PropertyListEncoder()
@@ -23,12 +25,16 @@ struct Contact: Codable {
         name = contact.name
         surname = contact.surname
         phoneNumber = contact.phoneNumber
+        image = contact.image
+        favorite = contact.favorite
     }
 
-    init(name: String, surname: String, phoneNumber: String) {
+    init(name: String, surname: String, phoneNumber: String, image: Data?, favorite: Bool) {
         self.name = name
         self.surname = surname
         self.phoneNumber = phoneNumber
+        self.image = image
+        self.favorite = favorite
     }
 
 }

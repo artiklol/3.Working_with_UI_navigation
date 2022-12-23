@@ -110,7 +110,8 @@ class MainTabBarController: UITabBarController {
         let contacts = try? CNContactStore().unifiedContacts(matching: predicate, keysToFetch: [
             CNContactGivenNameKey as CNKeyDescriptor,
             CNContactFamilyNameKey as CNKeyDescriptor,
-            CNContactPhoneNumbersKey as CNKeyDescriptor
+            CNContactPhoneNumbersKey as CNKeyDescriptor,
+            CNContactThumbnailImageDataKey as CNKeyDescriptor
         ])
 
         guard let contacts = contacts else { return }
@@ -120,16 +121,35 @@ class MainTabBarController: UITabBarController {
             for phoneNumbersString in contact.phoneNumbers {
                 phoneNumber = phoneNumbersString.value.stringValue
             }
+            let formatedPhoneNumber = formatingPhoneNumber(number: phoneNumber)
             let element = Contact(name: contact.givenName,
                                   surname: contact.familyName,
-                                  phoneNumber: phoneNumber)
+                                  phoneNumber: formatedPhoneNumber,
+                                  image: contact.thumbnailImageData,
+                                  favorite: false)
 
             contactsTest.append(element)
         }
 
-        print("1: \(contactsTest.count)")
+        print("1: \(String(describing: contactsTest[0].image))")
         StorageManager.shared.saveDataToFile(contactsTest)
     }
+    private func formatingPhoneNumber(number: String) -> String {
+            let cleanPhoneNumber = number.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+            let exampleOfFormatting = "+XXX XX XXX XX XX"
+
+            var result = ""
+            var index = cleanPhoneNumber.startIndex
+            for symbol in exampleOfFormatting where index < cleanPhoneNumber.endIndex {
+                if symbol == "X" {
+                    result.append(cleanPhoneNumber[index])
+                    index = cleanPhoneNumber.index(after: index)
+                } else {
+                    result.append(symbol)
+                }
+            }
+            return result
+        }
 
     private func showSettingsAlert() {
         let msg = "To continue working, this application requires access to contacts. " +

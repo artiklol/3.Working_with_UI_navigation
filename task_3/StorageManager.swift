@@ -27,12 +27,24 @@ class StorageManager {
         try? encodedContact.write(to: archiveURL, options: .noFileProtection)
     }
 
+    func updateFavoriteDataToFile(index: Int, bool: Bool) {
+        contactList[index].favorite = bool
+        guard let archiveURL = archiveURL else { return }
+        let encoder = PropertyListEncoder()
+        guard let encodedContact = try? encoder.encode(contactList) else { return }
+        try? encodedContact.write(to: archiveURL, options: .noFileProtection)
+        print("test: \(contactList[index].name) \(contactList[index].favorite)")
+    }
+
     func getUserDataFile() -> [Contact] {
         guard let archiveURL = archiveURL else { return contactList }
         guard let savedData = try? Data(contentsOf: archiveURL) else { return contactList }
         let decoder = PropertyListDecoder()
         guard let loadedData = try? decoder.decode([Contact].self, from: savedData) else { return contactList }
         contactList = loadedData
+        for list in contactList {
+            print(list)
+        }
         return contactList
     }
 

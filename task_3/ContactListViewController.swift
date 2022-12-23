@@ -49,14 +49,26 @@ extension ContactListViewController: UITableViewDataSource {
             return cell
         }
 
-        let element = contactList[indexPath.row]
-        cell.titleLabel.text = element.phoneNumber
+        let contact = contactList[indexPath.row]
+        cell.fullNameLabel.text = "\(contact.name) \(contact.surname)"
+        cell.phoneNumberLabel.text = "\(contact.phoneNumber)"
+        cell.selectCell(index: indexPath.row)
+        cell.statusFavorite = contact.favorite
+        cell.checkStatusFavoriteButton()
+        if let imageData = contact.image {
+            print("image \(String(describing: UIImage(data: imageData)))")
+            cell.iconImageView.image = UIImage(data: imageData)
+        } else {
+            cell.iconImageView.image = UIImage(named: "face")
+        }
         return cell
-
     }
-
 }
 
 extension ContactListViewController: UITableViewDelegate {
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailsViewController = DetailsViewController()
+        navigationController?.pushViewController(detailsViewController, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }

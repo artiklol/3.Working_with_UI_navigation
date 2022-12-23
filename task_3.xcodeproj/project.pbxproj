@@ -17,6 +17,7 @@
 		061530EE295085EE0095F6EE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 061530EC295085EE0095F6EE /* LaunchScreen.storyboard */; };
 		061530F72950A4450095F6EE /* ContactListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061530F62950A4450095F6EE /* ContactListViewController.swift */; };
 		061530F92950A4890095F6EE /* FavoriteСontactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061530F82950A4890095F6EE /* FavoriteСontactsViewController.swift */; };
+		06FB44432955D984009C9C00 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FB44422955D983009C9C00 /* DetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		061530EF295085EE0095F6EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		061530F62950A4450095F6EE /* ContactListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListViewController.swift; sourceTree = "<group>"; };
 		061530F82950A4890095F6EE /* FavoriteСontactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoriteСontactsViewController.swift"; sourceTree = "<group>"; };
+		06FB44422955D983009C9C00 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 				061530F62950A4450095F6EE /* ContactListViewController.swift */,
 				06003AEE295374AD003A638C /* ContactListCell.swift */,
 				061530F82950A4890095F6EE /* FavoriteСontactsViewController.swift */,
+				06FB44422955D983009C9C00 /* DetailsViewController.swift */,
 				061530E1295085EA0095F6EE /* AppDelegate.swift */,
 				061530E3295085EA0095F6EE /* SceneDelegate.swift */,
 				061530EA295085EE0095F6EE /* Assets.xcassets */,
@@ -173,6 +176,7 @@
 			files = (
 				06003AEF295374AD003A638C /* ContactListCell.swift in Sources */,
 				06003AEB295330A6003A638C /* Contact.swift in Sources */,
+				06FB44432955D984009C9C00 /* DetailsViewController.swift in Sources */,
 				061530E6295085EA0095F6EE /* MainTabBarController.swift in Sources */,
 				061530F72950A4450095F6EE /* ContactListViewController.swift in Sources */,
 				06003AED29533237003A638C /* StorageManager.swift in Sources */,
