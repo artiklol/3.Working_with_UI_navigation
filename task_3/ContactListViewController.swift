@@ -27,6 +27,10 @@ class ContactListViewController: UIViewController {
         tableView.dataSource = self
 
         setConstraint()
+
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self,
+                                                               action: #selector(longPress(sender:)))
+        tableView.addGestureRecognizer(longPressRecognizer)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -57,6 +61,35 @@ class ContactListViewController: UIViewController {
         tableView.reloadData()
     }
 
+    @objc func longPress(sender: UILongPressGestureRecognizer) {
+        if sender.state == .began {
+            let touchPoint = sender.location(in: tableView)
+            if let indexPath = tableView.indexPathForRow(at: touchPoint) {
+                let alert = UIAlertController(title: contactList[indexPath.row].name,
+                                              message: nil, preferredStyle: .alert)
+
+                alert.addAction(UIAlertAction(title: "Скопировать телефон", style: .default) { _ in
+                    UIPasteboard.general.string = self.contactList[indexPath.row].phoneNumber
+                })
+                alert.addAction(UIAlertAction(title: "Поделиться телефоном", style: .default) { _ in
+                    let items = ["\(self.contactList[indexPath.row].phoneNumber)"]
+                    let activityViewController = UIActivityViewController(activityItems: items,
+                                                                          applicationActivities: nil)
+                    self.present(activityViewController, animated: true)
+                })
+                alert.addAction(UIAlertAction(title: "Удалить контакт", style: .destructive) { _ in
+                    self.contactList.remove(at: indexPath.row)
+                    StorageManager.shared.deleteElementDataToFile(index: indexPath.row)
+                    self.tableView.reloadData()
+                })
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+
+                present(alert, animated: true, completion: nil)
+            }
+
+        }
+    }
+
 }
 
 extension ContactListViewController: UITableViewDataSource {
@@ -74,7 +107,8 @@ extension ContactListViewController: UITableViewDataSource {
         cell.dataInCell(contact: contactList[indexPath.row])
         cell.settingFavoriteButton().tag = indexPath.row
         cell.settingFavoriteButton().addTarget(self, action: #selector(favoriteButtonTapped(sender:)),
-                                      for: .touchUpInside)
+                                               for: .touchUpInside)
+
         return cell
     }
 }

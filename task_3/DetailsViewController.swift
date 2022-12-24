@@ -47,7 +47,6 @@ class DetailsViewController: UIViewController {
     private lazy var phoneNumberTextField = UITextField()
     private lazy var editButton = UIBarButtonItem(title: "Edit", style: .plain, target: self,
                                                   action: #selector(editButtonTapped))
-    private lazy var scrollView = UIScrollView()
 
     init(detailElement: Contact, indexContact: Int) {
         self.detailContact = detailElement

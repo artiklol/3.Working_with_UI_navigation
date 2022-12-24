@@ -43,6 +43,14 @@ class StorageManager {
         try? encodedContact.write(to: archiveURL, options: .noFileProtection)
     }
 
+    func deleteElementDataToFile(index: Int) {
+        contactList.remove(at: index)
+        guard let archiveURL = archiveURL else { return }
+        let encoder = PropertyListEncoder()
+        guard let encodedContact = try? encoder.encode(contactList) else { return }
+        try? encodedContact.write(to: archiveURL, options: .noFileProtection)
+    }
+
     func getUserDataFile() -> [Contact] {
         guard let archiveURL = archiveURL else { return contactList }
         guard let savedData = try? Data(contentsOf: archiveURL) else { return contactList }
