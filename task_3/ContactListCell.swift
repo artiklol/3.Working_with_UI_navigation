@@ -11,7 +11,13 @@ class ContactListCell: UITableViewCell {
 
     static let cellIdentifier = "contactList"
 
-    lazy var iconImageView: UIImageView = {
+    private lazy var mainStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.spacing = 15
+        return stackView
+    }()
+    private lazy var iconImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.tintColor = .black
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -19,28 +25,11 @@ class ContactListCell: UITableViewCell {
     }()
     private lazy var iconInCircleView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(red: CGFloat.random(in: 0...1),
-                                       green: CGFloat.random(in: 0...1),
-                                       blue: CGFloat.random(in: 0...1),
-                                       alpha: 1.0)
+        view.backgroundColor = .yellow
         view.frame.size.height = 25
         view.layer.cornerRadius = view.frame.height
         view.clipsToBounds = true
         return view
-    }()
-    lazy var fullNameLabel: UILabel = {
-        let label = UILabel()
-        label.font = label.font.withSize(20)
-        label.textColor = .black
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    lazy var phoneNumberLabel: UILabel = {
-        let label = UILabel()
-        label.font = label.font.withSize(15)
-        label.textColor = .black
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
     }()
     private lazy var labelsStackView: UIStackView = {
         let stackView = UIStackView()
@@ -48,23 +37,30 @@ class ContactListCell: UITableViewCell {
         stackView.spacing = 2
         return stackView
     }()
+    private lazy var fullNameLabel: UILabel = {
+        let label = UILabel()
+        label.font = label.font.withSize(20)
+        label.textColor = .black
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    private lazy var phoneNumberLabel: UILabel = {
+        let label = UILabel()
+        label.font = label.font.withSize(15)
+        label.textColor = .black
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     private lazy var favoriteButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .none
         button.layer.cornerRadius = 15
         button.tintColor = .red
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(favoriteButtonTapped), for: .touchUpInside)
         return button
     }()
-    private lazy var mainStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.spacing = 15
-        return stackView
-    }()
-    var statusFavorite = true
-    private var indexCell = 0
+
+    private lazy var statusFavorite = true
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
@@ -77,11 +73,19 @@ class ContactListCell: UITableViewCell {
         mainStackView.addArrangedSubview(labelsStackView)
         mainStackView.addArrangedSubview(favoriteButton)
 
+        setConstraint()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    private func setConstraint() {
         NSLayoutConstraint.activate([
-            mainStackView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 15),
-            mainStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15),
-            mainStackView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -15),
-            mainStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15),
+            mainStackView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10),
+            mainStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            mainStackView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10),
+            mainStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
 
             iconImageView.topAnchor.constraint(equalTo: iconInCircleView.topAnchor, constant: 10),
             iconImageView.leadingAnchor.constraint(equalTo: iconInCircleView.leadingAnchor, constant: 10),
@@ -96,37 +100,32 @@ class ContactListCell: UITableViewCell {
         ])
     }
 
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    private func setIconFavorite(nameIcon: String) {
+    private func setSizeIconFavorite(nameIcon: String) {
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 20)
         let heartIcon = UIImage(systemName: nameIcon, withConfiguration: largeConfig)
         favoriteButton.setImage(heartIcon, for: .normal)
     }
 
-    func selectCell(index: Int) {
-        indexCell = index
-    }
+    func dataInCell(contact: Contact) {
+        fullNameLabel.text = "\(contact.name) \(contact.surname)"
+        phoneNumberLabel.text = "\(contact.phoneNumber)"
+        statusFavorite = contact.favorite
 
-    func checkStatusFavoriteButton() {
-        if statusFavorite {
-            setIconFavorite(nameIcon: "heart.fill")
+        if let imageData = contact.image {
+            iconImageView.image = UIImage(data: imageData)
         } else {
-            setIconFavorite(nameIcon: "heart")
+            iconImageView.image = UIImage(named: "face")
+        }
+
+        if statusFavorite {
+            setSizeIconFavorite(nameIcon: "heart.fill")
+        } else {
+            setSizeIconFavorite(nameIcon: "heart")
         }
     }
 
-    @objc func favoriteButtonTapped() {
-        if statusFavorite {
-            statusFavorite = false
-            setIconFavorite(nameIcon: "heart")
-        } else {
-            statusFavorite = true
-            setIconFavorite(nameIcon: "heart.fill")
-        }
-
-        StorageManager.shared.updateFavoriteDataToFile(index: indexCell, bool: statusFavorite)
+    func settingFavoriteButton() -> UIButton {
+        return favoriteButton
     }
+
 }

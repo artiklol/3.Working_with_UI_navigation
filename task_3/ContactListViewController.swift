@@ -9,9 +9,13 @@ import UIKit
 
 class ContactListViewController: UIViewController {
 
-    var tableView = UITableView()
-
-    var contactList = StorageManager.shared.getUserDataFile()
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.separatorInset = .zero
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
+    }()
+    private lazy var contactList = StorageManager.shared.getUserDataFile()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,17 +26,35 @@ class ContactListViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
 
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+        setConstraint()
+    }
 
-        print(contactList.count)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        contactList = StorageManager.shared.getUserDataFile()
+        tableView.reloadData()
+    }
 
+    private func setConstraint() {
         NSLayoutConstraint.activate([
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0),
             tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
-
         ])
+    }
+
+    @objc func favoriteButtonTapped(sender: UIButton) {
+        let buttonTag = sender.tag
+
+        if contactList[buttonTag].favorite {
+            contactList[buttonTag].favorite = false
+        } else {
+            contactList[buttonTag].favorite = true
+        }
+
+        StorageManager.shared.updateFavoriteDataToFile(index: buttonTag, bool: contactList[buttonTag].favorite)
+        tableView.reloadData()
     }
 
 }
@@ -50,17 +72,10 @@ extension ContactListViewController: UITableViewDataSource {
         }
 
         let contact = contactList[indexPath.row]
-        cell.fullNameLabel.text = "\(contact.name) \(contact.surname)"
-        cell.phoneNumberLabel.text = "\(contact.phoneNumber)"
-        cell.selectCell(index: indexPath.row)
-        cell.statusFavorite = contact.favorite
-        cell.checkStatusFavoriteButton()
-        if let imageData = contact.image {
-            print("image \(String(describing: UIImage(data: imageData)))")
-            cell.iconImageView.image = UIImage(data: imageData)
-        } else {
-            cell.iconImageView.image = UIImage(named: "face")
-        }
+        cell.dataInCell(contact: contact)
+        cell.settingFavoriteButton().tag = indexPath.row
+        cell.settingFavoriteButton().addTarget(self, action: #selector(favoriteButtonTapped(sender:)),
+                                      for: .touchUpInside)
         return cell
     }
 }

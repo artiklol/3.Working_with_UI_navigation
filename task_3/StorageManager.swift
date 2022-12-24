@@ -33,7 +33,7 @@ class StorageManager {
         let encoder = PropertyListEncoder()
         guard let encodedContact = try? encoder.encode(contactList) else { return }
         try? encodedContact.write(to: archiveURL, options: .noFileProtection)
-        print("test: \(contactList[index].name) \(contactList[index].favorite)")
+//        print("test: \(contactList[index].name) \(contactList[index].favorite)")
     }
 
     func getUserDataFile() -> [Contact] {
@@ -42,9 +42,6 @@ class StorageManager {
         let decoder = PropertyListDecoder()
         guard let loadedData = try? decoder.decode([Contact].self, from: savedData) else { return contactList }
         contactList = loadedData
-        for list in contactList {
-            print(list)
-        }
         return contactList
     }
 
