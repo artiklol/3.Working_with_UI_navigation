@@ -71,8 +71,7 @@ extension ContactListViewController: UITableViewDataSource {
             return cell
         }
 
-        let contact = contactList[indexPath.row]
-        cell.dataInCell(contact: contact)
+        cell.dataInCell(contact: contactList[indexPath.row])
         cell.settingFavoriteButton().tag = indexPath.row
         cell.settingFavoriteButton().addTarget(self, action: #selector(favoriteButtonTapped(sender:)),
                                       for: .touchUpInside)
@@ -82,7 +81,8 @@ extension ContactListViewController: UITableViewDataSource {
 
 extension ContactListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailsViewController = DetailsViewController()
+        let detailsViewController = DetailsViewController(detailElement: contactList[indexPath.row],
+                                                          indexContact: indexPath.row)
         navigationController?.pushViewController(detailsViewController, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }

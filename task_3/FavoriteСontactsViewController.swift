@@ -85,8 +85,7 @@ extension FavoriteСontactsViewController: UITableViewDataSource {
 
         updateIndexesActiveFavorite()
 
-        let contact = contactList[indexesActiveFavorite[indexPath.row]]
-        cell.dataInCell(contact: contact)
+        cell.dataInCell(contact: contactList[indexesActiveFavorite[indexPath.row]])
         cell.settingFavoriteButton().tag = indexPath.row
         cell.settingFavoriteButton().addTarget(self, action: #selector(favoriteButtonTapped(sender:)),
                                       for: .touchUpInside)

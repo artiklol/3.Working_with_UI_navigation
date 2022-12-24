@@ -68,9 +68,9 @@
 			children = (
 				06003AEA295330A6003A638C /* Contact.swift */,
 				06003AEC29533237003A638C /* StorageManager.swift */,
+				06003AEE295374AD003A638C /* ContactListCell.swift */,
 				061530E5295085EA0095F6EE /* MainTabBarController.swift */,
 				061530F62950A4450095F6EE /* ContactListViewController.swift */,
-				06003AEE295374AD003A638C /* ContactListCell.swift */,
 				061530F82950A4890095F6EE /* FavoriteСontactsViewController.swift */,
 				06FB44422955D983009C9C00 /* DetailsViewController.swift */,
 				061530E1295085EA0095F6EE /* AppDelegate.swift */,
