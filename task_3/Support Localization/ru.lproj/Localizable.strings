@@ -1,0 +1,24 @@
+/* 
+  Localizable.strings
+  task_3
+
+  Created by Artem Sulzhenko on 25.12.2022.
+  
+*/
+"Contacts" = "Контакты";
+"Favorites" = "Избранные";
+"Download contacts" = "Загрузить контакты";
+"Contact list" = "Список контактов";
+"To continue working, this application requires access to contacts. " = "Для продолжения работы этому приложению требуется доступ к контактам. ";
+"Do you want to grant permission?" = "Вы хотите предоставить доступ?";
+"Open settings" = "Открыть настройки";
+"Cancel" = "Отменить";
+"Copy phone number" = "Скопировать телефон";
+"Share phone number" = "Поделиться телефоном";
+"Delete contact" = "Удалить контакт";
+"Edit" = "Править";
+"Name" = "Имя";
+"Surname" = "Фамилия";
+"Phone Number" = "Номер телефона";
+"Done" = "Готово";
+"Save" = "Сохранить";
