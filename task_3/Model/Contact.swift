@@ -36,5 +36,4 @@ struct Contact: Codable {
         self.image = image
         self.favorite = favorite
     }
-
 }
