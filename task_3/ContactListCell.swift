@@ -19,13 +19,11 @@ class ContactListCell: UITableViewCell {
     }()
     private lazy var iconImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.tintColor = .black
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     private lazy var iconInCircleView: UIView = {
         let view = UIView()
-        view.backgroundColor = .yellow
         view.frame.size.height = 25
         view.layer.cornerRadius = view.frame.height
         view.clipsToBounds = true
@@ -59,7 +57,6 @@ class ContactListCell: UITableViewCell {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-
     private lazy var statusFavorite = true
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -82,15 +79,15 @@ class ContactListCell: UITableViewCell {
 
     private func setConstraint() {
         NSLayoutConstraint.activate([
+            iconImageView.topAnchor.constraint(equalTo: iconInCircleView.topAnchor, constant: 0),
+            iconImageView.leadingAnchor.constraint(equalTo: iconInCircleView.leadingAnchor, constant: 0),
+            iconImageView.trailingAnchor.constraint(equalTo: iconInCircleView.trailingAnchor, constant: 0),
+            iconImageView.bottomAnchor.constraint(equalTo: iconInCircleView.bottomAnchor, constant: 0),
+
             mainStackView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10),
             mainStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             mainStackView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10),
             mainStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
-
-            iconImageView.topAnchor.constraint(equalTo: iconInCircleView.topAnchor, constant: 10),
-            iconImageView.leadingAnchor.constraint(equalTo: iconInCircleView.leadingAnchor, constant: 10),
-            iconImageView.trailingAnchor.constraint(equalTo: iconInCircleView.trailingAnchor, constant: -10),
-            iconImageView.bottomAnchor.constraint(equalTo: iconInCircleView.bottomAnchor, constant: -10),
 
             iconInCircleView.widthAnchor.constraint(equalToConstant: 50),
             iconInCircleView.heightAnchor.constraint(equalToConstant: 50),
@@ -106,15 +103,33 @@ class ContactListCell: UITableViewCell {
         favoriteButton.setImage(heartIcon, for: .normal)
     }
 
+    private func imageInitials(name: String?) -> UIImage? {
+         let frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+         let nameLabel = UILabel(frame: frame)
+         nameLabel.textAlignment = .center
+         nameLabel.backgroundColor = .lightGray
+         nameLabel.textColor = .white
+         nameLabel.font = UIFont.boldSystemFont(ofSize: 40)
+         nameLabel.text = name
+         UIGraphicsBeginImageContext(frame.size)
+          if let currentContext = UIGraphicsGetCurrentContext() {
+             nameLabel.layer.render(in: currentContext)
+             let nameImage = UIGraphicsGetImageFromCurrentImageContext()
+             return nameImage
+          }
+          return nil
+    }
+
     func dataInCell(contact: Contact) {
         fullNameLabel.text = "\(contact.name) \(contact.surname)"
         phoneNumberLabel.text = "\(contact.phoneNumber)"
         statusFavorite = contact.favorite
+        let initialsFullname = "\(contact.name.prefix(1))\(contact.surname.prefix(1))"
 
         if let imageData = contact.image {
             iconImageView.image = UIImage(data: imageData)
         } else {
-            iconImageView.image = UIImage(named: "face")
+            iconImageView.image = imageInitials(name: initialsFullname)
         }
 
         if statusFavorite {

@@ -82,7 +82,6 @@ extension FavoriteСontactsViewController: UITableViewDataSource {
             let cell = ContactListCell()
             return cell
         }
-
         updateIndexesActiveFavorite()
 
         cell.dataInCell(contact: contactList[indexesActiveFavorite[indexPath.row]])

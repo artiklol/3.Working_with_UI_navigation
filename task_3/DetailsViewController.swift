@@ -9,9 +9,6 @@ import UIKit
 
 class DetailsViewController: UIViewController {
 
-    private var detailContact: Contact
-    private var indexContact: Int
-
     private lazy var iconImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.tintColor = .black
@@ -19,13 +16,13 @@ class DetailsViewController: UIViewController {
         if let imageData = detailContact.image {
             imageView.image = UIImage(data: imageData)
         } else {
-            imageView.image = UIImage(named: "face")
+            imageView.image = imageInitials()
         }
         return imageView
     }()
     private lazy var iconInCircleView: UIView = {
         let view = UIView()
-        view.backgroundColor = .yellow
+        view.backgroundColor = .systemGray4
         view.frame.size.height = 50
         view.layer.cornerRadius = view.frame.height
         view.clipsToBounds = true
@@ -45,8 +42,10 @@ class DetailsViewController: UIViewController {
     private lazy var surnameTextField = UITextField()
     private lazy var phoneNumberTitleLabel = UILabel()
     private lazy var phoneNumberTextField = UITextField()
-    private lazy var editButton = UIBarButtonItem(title: "Edit", style: .plain, target: self,
+    private lazy var editButton = UIBarButtonItem(title: "Edit".localized(), style: .plain, target: self,
                                                   action: #selector(editButtonTapped))
+    private var detailContact: Contact
+    private var indexContact: Int
 
     init(detailElement: Contact, indexContact: Int) {
         self.detailContact = detailElement
@@ -74,14 +73,14 @@ class DetailsViewController: UIViewController {
 
         setConstraint()
         setSettingNavigationBar()
-        setSettingLabel(label: nameTitleLabel, title: "Name")
-        setSettingLabel(label: surnameTitleLabel, title: "Surname")
-        setSettingLabel(label: phoneNumberTitleLabel, title: "Phone Number")
+        setSettingLabel(label: nameTitleLabel, title: "Name".localized())
+        setSettingLabel(label: surnameTitleLabel, title: "Surname".localized())
+        setSettingLabel(label: phoneNumberTitleLabel, title: "Phone Number".localized())
         setSettingTextField(textField: nameTextField, text: detailContact.name)
         setSettingTextField(textField: surnameTextField, text: detailContact.surname)
         setSettingTextField(textField: phoneNumberTextField, text: detailContact.phoneNumber)
-        registerForKeyboardNotifications()
 
+        registerForKeyboardNotifications()
         setupKeyboard(textField: nameTextField)
         setupKeyboard(textField: surnameTextField)
         setupKeyboard(textField: phoneNumberTextField)
@@ -93,10 +92,10 @@ class DetailsViewController: UIViewController {
 
     private func setConstraint() {
         NSLayoutConstraint.activate([
-            iconImageView.topAnchor.constraint(equalTo: iconInCircleView.topAnchor, constant: 20),
-            iconImageView.leadingAnchor.constraint(equalTo: iconInCircleView.leadingAnchor, constant: 20),
-            iconImageView.trailingAnchor.constraint(equalTo: iconInCircleView.trailingAnchor, constant: -20),
-            iconImageView.bottomAnchor.constraint(equalTo: iconInCircleView.bottomAnchor, constant: -20),
+            iconImageView.topAnchor.constraint(equalTo: iconInCircleView.topAnchor, constant: 0),
+            iconImageView.leadingAnchor.constraint(equalTo: iconInCircleView.leadingAnchor, constant: 0),
+            iconImageView.trailingAnchor.constraint(equalTo: iconInCircleView.trailingAnchor, constant: 0),
+            iconImageView.bottomAnchor.constraint(equalTo: iconInCircleView.bottomAnchor, constant: 0),
 
             iconInCircleView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             iconInCircleView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
@@ -143,6 +142,23 @@ class DetailsViewController: UIViewController {
         textField.translatesAutoresizingMaskIntoConstraints = false
     }
 
+    private func imageInitials() -> UIImage? {
+         let frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+         let nameLabel = UILabel(frame: frame)
+         nameLabel.textAlignment = .center
+         nameLabel.backgroundColor = .lightGray
+         nameLabel.textColor = .white
+         nameLabel.font = UIFont.boldSystemFont(ofSize: 40)
+         nameLabel.text = "\(detailContact.name.prefix(1))\(detailContact.surname.prefix(1))"
+         UIGraphicsBeginImageContext(frame.size)
+          if let currentContext = UIGraphicsGetCurrentContext() {
+             nameLabel.layer.render(in: currentContext)
+             let nameImage = UIGraphicsGetImageFromCurrentImageContext()
+             return nameImage
+          }
+          return nil
+    }
+
     @objc func editButtonTapped() {
         donePressed()
 
@@ -150,7 +166,7 @@ class DetailsViewController: UIViewController {
             nameTextField.isUserInteractionEnabled = false
             surnameTextField.isUserInteractionEnabled = false
             phoneNumberTextField.isUserInteractionEnabled = false
-            editButton.title = "Edit"
+            editButton.title = "Edit".localized()
             detailContact.name = nameTextField.text ?? "Error Name"
             detailContact.surname = surnameTextField.text ?? "Error Surname"
             detailContact.phoneNumber = phoneNumberTextField.text ?? "Error Phone Number"
@@ -160,7 +176,7 @@ class DetailsViewController: UIViewController {
             nameTextField.isUserInteractionEnabled = true
             surnameTextField.isUserInteractionEnabled = true
             phoneNumberTextField.isUserInteractionEnabled = true
-            editButton.title = "Save"
+            editButton.title = "Save".localized()
         }
     }
 }
@@ -177,7 +193,7 @@ extension DetailsViewController: UITextFieldDelegate {
         textField.delegate = self
 
         let bar = UIToolbar()
-        let done = UIBarButtonItem(title: "Done", style: .plain, target: self,
+        let done = UIBarButtonItem(title: "Done".localized(), style: .plain, target: self,
                                    action: #selector(donePressed))
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
                                             target: nil, action: nil)
@@ -208,7 +224,7 @@ extension DetailsViewController: UITextFieldDelegate {
     @objc func showKeyboard(_ notification: Notification) {
         guard let keyboardFrameSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey]
                                        as? NSValue)?.cgRectValue else { return }
-        view.frame.origin.y = -keyboardFrameSize.height/2
+        view.frame.origin.y = -keyboardFrameSize.height/2 - 50
     }
 
     @objc private func donePressed() {
