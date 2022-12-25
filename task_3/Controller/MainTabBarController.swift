@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainTabBarController: UITabBarController {
+final class MainTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,4 +54,5 @@ class MainTabBarController: UITabBarController {
         viewController.tabBarItem.selectedImage = selectedImage
         return viewController
     }
+
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FavoriteСontactsViewController: UIViewController {
+final class FavoriteСontactsViewController: UIViewController {
 
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -69,9 +69,11 @@ class FavoriteСontactsViewController: UIViewController {
         contactList = StorageManager.shared.getUserDataFile()
         tableView.reloadData()
     }
+
 }
 
 extension FavoriteСontactsViewController: UITableViewDataSource {
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return contactList.filter { $0.favorite == true }.count
     }
@@ -91,4 +93,5 @@ extension FavoriteСontactsViewController: UITableViewDataSource {
 
         return cell
     }
+
 }

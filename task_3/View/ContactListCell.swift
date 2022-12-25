@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ContactListCell: UITableViewCell {
+final class ContactListCell: UITableViewCell {
 
     static let cellIdentifier = "contactList"
 

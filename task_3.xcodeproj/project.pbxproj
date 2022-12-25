@@ -52,6 +52,55 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0607F8212958C9E7008EFEB0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				06003AEA295330A6003A638C /* Contact.swift */,
+				06003AEC29533237003A638C /* StorageManager.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0607F8222958CA4C008EFEB0 /* Support Localization */ = {
+			isa = PBXGroup;
+			children = (
+				0607F81929587F97008EFEB0 /* String+Ex.swift */,
+				0607F81F29588004008EFEB0 /* Localizable.strings */,
+			);
+			path = "Support Localization";
+			sourceTree = "<group>";
+		};
+		0607F8232958CA5F008EFEB0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				06003AEE295374AD003A638C /* ContactListCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0607F8242958CA7B008EFEB0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				061530E5295085EA0095F6EE /* MainTabBarController.swift */,
+				061530F62950A4450095F6EE /* ContactListViewController.swift */,
+				061530F82950A4890095F6EE /* FavoriteСontactsViewController.swift */,
+				06FB44422955D983009C9C00 /* DetailsViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		0607F8252958CA9A008EFEB0 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				061530E1295085EA0095F6EE /* AppDelegate.swift */,
+				061530E3295085EA0095F6EE /* SceneDelegate.swift */,
+				061530EA295085EE0095F6EE /* Assets.xcassets */,
+				061530EC295085EE0095F6EE /* LaunchScreen.storyboard */,
+				061530EF295085EE0095F6EE /* Info.plist */,
+			);
+			path = "Support Files";
+			sourceTree = "<group>";
+		};
 		061530D5295085EA0095F6EE = {
 			isa = PBXGroup;
 			children = (
@@ -71,20 +120,11 @@
 		061530E0295085EA0095F6EE /* task_3 */ = {
 			isa = PBXGroup;
 			children = (
-				0607F81929587F97008EFEB0 /* String+Ex.swift */,
-				0607F81F29588004008EFEB0 /* Localizable.strings */,
-				06003AEA295330A6003A638C /* Contact.swift */,
-				06003AEC29533237003A638C /* StorageManager.swift */,
-				06003AEE295374AD003A638C /* ContactListCell.swift */,
-				061530E5295085EA0095F6EE /* MainTabBarController.swift */,
-				061530F62950A4450095F6EE /* ContactListViewController.swift */,
-				061530F82950A4890095F6EE /* FavoriteСontactsViewController.swift */,
-				06FB44422955D983009C9C00 /* DetailsViewController.swift */,
-				061530E1295085EA0095F6EE /* AppDelegate.swift */,
-				061530E3295085EA0095F6EE /* SceneDelegate.swift */,
-				061530EA295085EE0095F6EE /* Assets.xcassets */,
-				061530EC295085EE0095F6EE /* LaunchScreen.storyboard */,
-				061530EF295085EE0095F6EE /* Info.plist */,
+				0607F8212958C9E7008EFEB0 /* Model */,
+				0607F8232958CA5F008EFEB0 /* View */,
+				0607F8242958CA7B008EFEB0 /* Controller */,
+				0607F8222958CA4C008EFEB0 /* Support Localization */,
+				0607F8252958CA9A008EFEB0 /* Support Files */,
 			);
 			path = task_3;
 			sourceTree = "<group>";
@@ -344,7 +384,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = T5K8V44L2C;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = task_3/Info.plist;
+				INFOPLIST_FILE = "task_3/Support Files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -371,7 +411,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = T5K8V44L2C;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = task_3/Info.plist;
+				INFOPLIST_FILE = "task_3/Support Files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

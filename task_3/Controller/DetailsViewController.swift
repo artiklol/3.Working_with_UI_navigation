@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailsViewController: UIViewController {
+final class DetailsViewController: UIViewController {
 
     private lazy var iconImageView: UIImageView = {
         let imageView = UIImageView()
@@ -171,6 +171,7 @@ class DetailsViewController: UIViewController {
             detailContact.surname = surnameTextField.text ?? "Error Surname"
             detailContact.phoneNumber = phoneNumberTextField.text ?? "Error Phone Number"
 
+            iconImageView.image = imageInitials()
             StorageManager.shared.updateInfoDataToFile(index: indexContact, element: detailContact)
         } else {
             nameTextField.isUserInteractionEnabled = true
@@ -179,6 +180,7 @@ class DetailsViewController: UIViewController {
             editButton.title = "Save".localized()
         }
     }
+
 }
 
 extension DetailsViewController: UITextFieldDelegate {
@@ -230,4 +232,5 @@ extension DetailsViewController: UITextFieldDelegate {
     @objc private func donePressed() {
         view.endEditing(true)
     }
+
 }

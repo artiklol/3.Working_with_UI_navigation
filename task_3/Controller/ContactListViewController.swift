@@ -8,7 +8,7 @@
 import UIKit
 import Contacts
 
-class ContactListViewController: UIViewController {
+final class ContactListViewController: UIViewController {
 
     private lazy var downloadContactsButton: UIButton = {
         let button = UIButton()
@@ -150,6 +150,7 @@ class ContactListViewController: UIViewController {
                 DispatchQueue.main.async {
                     if success {
                         self.getContacList()
+                        self.downloadContactsButton.isHidden = true
                     } else {
                         self.authorizationStatus = .denied
                     }
@@ -159,9 +160,11 @@ class ContactListViewController: UIViewController {
             break
         }
     }
+
 }
 
 extension ContactListViewController {
+
     private func getContacList() {
         var contactsResult: [Contact] = []
 
@@ -211,9 +214,11 @@ extension ContactListViewController {
         }
         return result
     }
+
 }
 
 extension ContactListViewController: UITableViewDataSource {
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         contactList.count
     }
@@ -245,13 +250,16 @@ extension ContactListViewController: UITableViewDataSource {
         StorageManager.shared.updateFavoriteDataToFile(index: buttonTag, bool: contactList[buttonTag].favorite)
         tableView.reloadData()
     }
+
 }
 
 extension ContactListViewController: UITableViewDelegate {
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailsViewController = DetailsViewController(detailElement: contactList[indexPath.row],
                                                           indexContact: indexPath.row)
         navigationController?.pushViewController(detailsViewController, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }
+
 }
